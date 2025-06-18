@@ -432,21 +432,19 @@
         "allowCustomValue": false,
         "current": {
           "text": [
-            "2151908",
             "2151909"
           ],
           "value": [
-            "2151908",
             "2151909"
           ]
         },
-        "definition": "label_values(op_interop_mon_default_executing_block_range,chain_id)",
+        "definition": "label_values(chain_id)",
         "multi": true,
         "name": "chain",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(op_interop_mon_default_executing_block_range,chain_id)",
+          "query": "label_values(chain_id)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -463,6 +461,6 @@
   "timezone": "browser",
   "title": "op-interop-mon",
   "uid": "feokja3izpxc0a",
-  "version": 18,
+  "version": 19,
   "weekStart": ""
 }
