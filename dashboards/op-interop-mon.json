@@ -107,7 +107,7 @@
         {
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum by(executing_chain_id, initiating_chain_id, status) (op_interop_mon_default_message_status)",
+          "expr": "sum(op_interop_mon_default_message_status)",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "total jobs",
@@ -199,7 +199,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "palette-classic-by-name"
           },
           "mappings": [],
           "thresholds": {
@@ -216,15 +216,7 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.-max*/"
-            },
-            "properties": []
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 10,
@@ -321,7 +313,7 @@
           "useBackend": false
         }
       ],
-      "title": "Panel Title",
+      "title": "Block Ranges",
       "type": "bargauge"
     },
     {
@@ -471,6 +463,6 @@
   "timezone": "browser",
   "title": "op-interop-mon",
   "uid": "feokja3izpxc0a",
-  "version": 14,
+  "version": 18,
   "weekStart": ""
 }
