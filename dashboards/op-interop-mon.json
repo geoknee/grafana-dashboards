@@ -243,16 +243,28 @@
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
-            "fillOpacity": 79,
-            "gradientMode": "opacity",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 53,
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "lineWidth": 2,
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
             },
             "thresholdsStyle": {
               "mode": "off"
@@ -291,26 +303,17 @@
       },
       "id": 2,
       "options": {
-        "barRadius": 0,
-        "barWidth": 0.97,
-        "fullHighlight": false,
-        "groupWidth": 0.7,
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
-        "orientation": "auto",
-        "showValue": "auto",
-        "stacking": "normal",
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
           "sort": "none"
-        },
-        "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 0
+        }
       },
       "pluginVersion": "11.5.0",
       "targets": [
@@ -327,7 +330,7 @@
         }
       ],
       "title": "Executing Message Status by ChainID",
-      "type": "barchart"
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -492,13 +495,13 @@
     ]
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2025-06-18T12:52:43.855Z",
+    "to": "2025-06-18T12:52:46.525Z"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "op-interop-mon",
   "uid": "feokja3izpxc0a",
-  "version": 11,
+  "version": 12,
   "weekStart": ""
 }
