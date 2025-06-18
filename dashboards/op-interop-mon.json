@@ -30,6 +30,103 @@
       "fieldConfig": {
         "defaults": {
           "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 20,
+        "x": 0,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.0",
+      "targets": [
+        {
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "sum(op_interop_mon_default_message_status)",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "legendFormat": "total jobs",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Total jobs",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "grafanacloud-prom"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
             "fixedColor": "purple",
             "mode": "fixed"
           },
@@ -47,9 +144,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
-        "w": 3,
-        "x": 0,
+        "h": 6,
+        "w": 4,
+        "x": 20,
         "y": 0
       },
       "id": 1,
@@ -80,7 +177,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "op_interop_mon_default_info{instance=\"$instance\"}",
+          "expr": "op_interop_mon_default_info",
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -152,28 +249,15 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byFrameRefID",
-              "options": "B"
-            },
-            "properties": [
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 10,
         "w": 24,
         "x": 0,
-        "y": 2
+        "y": 6
       },
-      "id": 2,
+      "id": 4,
       "options": {
         "legend": {
           "calcs": [],
@@ -188,14 +272,16 @@
         }
       },
       "pluginVersion": "11.5.0",
+      "repeat": "chain",
+      "repeatDirection": "h",
       "targets": [
         {
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum by(chain_id) (op_interop_mon_default_executing_messages{status=\"valid\"})",
+          "expr": "op_interop_mon_default_executing_block_range{range_type=\"max\", chain_id=\"$chain\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
-          "legendFormat": "{{chain_id}}-exec",
+          "legendFormat": "{{chain_id}}-exec-max",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -207,17 +293,49 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum by(chain_id) (op_interop_mon_default_initiating_messages{status=\"valid\"})",
+          "expr": "op_interop_mon_default_executing_block_range{range_type=\"min\", chain_id=\"$chain\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
-          "legendFormat": "{{chain_id}}-init",
+          "legendFormat": "{{chain_id}}-exec-min",
           "range": true,
           "refId": "B",
           "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "op_interop_mon_default_initiating_block_range{range_type=\"max\", chain_id=\"$chain\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "legendFormat": "{{chain_id}}-init-max",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "op_interop_mon_default_initiating_block_range{range_type=\"min\", chain_id=\"$chain\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "legendFormat": "{{chain_id}}-init-min",
+          "range": true,
+          "refId": "E",
+          "useBackend": false
         }
       ],
-      "title": "VALID Executing / Initiating Messages by ChainID",
+      "title": "Block Ranges",
       "type": "timeseries"
     },
     {
@@ -239,7 +357,7 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 53,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -257,7 +375,7 @@
             "spanNulls": false,
             "stacking": {
               "group": "A",
-              "mode": "none"
+              "mode": "normal"
             },
             "thresholdsStyle": {
               "mode": "off"
@@ -284,12 +402,7 @@
               "id": "byFrameRefID",
               "options": "B"
             },
-            "properties": [
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              }
-            ]
+            "properties": []
           }
         ]
       },
@@ -297,9 +410,9 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 16
       },
-      "id": 3,
+      "id": 2,
       "options": {
         "legend": {
           "calcs": [],
@@ -318,37 +431,21 @@
         {
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum by(chain_id) (op_interop_mon_default_executing_messages{instance=\"$instance\", status=\"invalid\"})",
+          "expr": "op_interop_mon_default_message_status{namespace=\"op-interop-mon\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
-          "legendFormat": "{{chain_id}}-exec",
+          "legendFormat": "{{initiating_chain_id}}<-{{executing_chain_id}}-{{status}}",
           "range": true,
           "refId": "A",
           "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "grafanacloud-prom"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "sum by(chain_id) (op_interop_mon_default_initiating_messages{instance=\"$instance\", status=\"invalid\"})",
-          "fullMetaSearch": false,
-          "hide": false,
-          "includeNullMetadata": true,
-          "legendFormat": "{{chain_id}}-init",
-          "range": true,
-          "refId": "B",
-          "useBackend": false
         }
       ],
-      "title": "INVALID Executing / Initiating Messages by ChainID",
+      "title": "Executing Message Status by ChainID",
       "type": "timeseries"
     }
   ],
   "preload": false,
-  "refresh": "",
+  "refresh": "5s",
   "schemaVersion": 40,
   "tags": [],
   "templating": {
@@ -356,15 +453,22 @@
       {
         "allowCustomValue": false,
         "current": {
-          "text": "",
-          "value": ""
+          "text": [
+            "2151908",
+            "2151909"
+          ],
+          "value": [
+            "2151908",
+            "2151909"
+          ]
         },
-        "definition": "label_values({service=\"interop-mon\"},instance)",
-        "name": "instance",
+        "definition": "label_values(chain_id)",
+        "multi": true,
+        "name": "chain",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values({service=\"interop-mon\"},instance)",
+          "query": "label_values(chain_id)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -374,14 +478,13 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "op-interop-mon",
   "uid": "feokja3izpxc0a",
-  "version": 2,
+  "version": 20,
   "weekStart": ""
 }
-
