@@ -199,7 +199,40 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic-by-name"
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -226,28 +259,17 @@
       },
       "id": 4,
       "options": {
-        "displayMode": "gradient",
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
-        "maxVizHeight": 300,
-        "minVizHeight": 16,
-        "minVizWidth": 8,
-        "namePlacement": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true,
-        "sizing": "auto",
-        "valueMode": "color"
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "pluginVersion": "11.5.0",
       "repeat": "chain",
@@ -314,7 +336,7 @@
         }
       ],
       "title": "Block Ranges",
-      "type": "bargauge"
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -412,7 +434,7 @@
           "expr": "op_interop_mon_default_message_status{namespace=\"op-interop-mon\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
-          "legendFormat": "{{initiating_chain_id}}->{{executing_chain_id}}-{{status}}",
+          "legendFormat": "{{initiating_chain_id}}<-{{executing_chain_id}}-{{status}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -423,7 +445,7 @@
     }
   ],
   "preload": false,
-  "refresh": "",
+  "refresh": "5s",
   "schemaVersion": 40,
   "tags": [],
   "templating": {
@@ -432,9 +454,11 @@
         "allowCustomValue": false,
         "current": {
           "text": [
+            "2151908",
             "2151909"
           ],
           "value": [
+            "2151908",
             "2151909"
           ]
         },
@@ -454,13 +478,13 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "op-interop-mon",
   "uid": "feokja3izpxc0a",
-  "version": 19,
+  "version": 20,
   "weekStart": ""
 }
