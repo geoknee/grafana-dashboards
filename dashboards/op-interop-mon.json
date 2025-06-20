@@ -66,6 +66,7 @@
             }
           },
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -296,7 +297,6 @@
         "wideLayout": true
       },
       "pluginVersion": "11.5.0",
-      "repeatDirection": "h",
       "targets": [
         {
           "disableTextWrap": false,
@@ -402,7 +402,6 @@
         }
       },
       "pluginVersion": "11.5.0",
-      "repeatDirection": "h",
       "targets": [
         {
           "disableTextWrap": false,
@@ -478,6 +477,7 @@
             }
           },
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -560,7 +560,6 @@
         }
       },
       "pluginVersion": "11.5.0",
-      "repeatDirection": "h",
       "targets": [
         {
           "disableTextWrap": false,
@@ -594,6 +593,7 @@
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
+            "axisSoftMin": -2,
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
@@ -622,6 +622,7 @@
             }
           },
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -704,7 +705,6 @@
         }
       },
       "pluginVersion": "11.5.0",
-      "repeatDirection": "h",
       "targets": [
         {
           "disableTextWrap": false,
@@ -787,6 +787,30 @@
               "options": "A"
             },
             "properties": []
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "2151908-exec-max"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
           }
         ]
       },
@@ -811,7 +835,6 @@
         }
       },
       "pluginVersion": "11.5.0",
-      "repeatDirection": "h",
       "targets": [
         {
           "disableTextWrap": false,
@@ -934,7 +957,6 @@
         }
       },
       "pluginVersion": "11.5.0",
-      "repeatDirection": "h",
       "targets": [
         {
           "disableTextWrap": false,
@@ -1002,13 +1024,13 @@
     ]
   },
   "time": {
-    "from": "2025-06-18T19:49:57.978Z",
-    "to": "2025-06-18T19:55:49.242Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "op-interop-mon",
   "uid": "feokja3izpxc0a",
-  "version": 5,
+  "version": 4,
   "weekStart": ""
 }
