@@ -19,7 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 22,
+  "id": 21,
   "links": [],
   "panels": [
     {
@@ -301,7 +301,7 @@
         {
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum by(executing_chain_id, initiating_chain_id) (op_interop_mon_default_message_status)",
+          "expr": "sum by(executing_chain_id, initiating_chain_id) (op_interop_mon_default_message_status{status!~\"valid|unknown\"})",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "{{initiating_chain_id}}<-{{executing_chain_id}}",
@@ -1031,6 +1031,6 @@
   "timezone": "browser",
   "title": "op-interop-mon",
   "uid": "feokja3izpxc0a",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }
