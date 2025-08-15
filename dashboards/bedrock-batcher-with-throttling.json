@@ -368,7 +368,7 @@
                 "type": "prometheus",
                 "uid": "grafanacloud-prom"
             },
-            "description": "pending_block_bytes is the amount of data loaded from the sequencer but not yet in a channel. pending_da_bytes is the estimated DA size after compression, and controls the throttling feature. Threshold is usually at 1MB.",
+            "description": "Estimated DA footprint of all unsafe blocks loaded by batcher. Will trigger throttling if it crosses a threshold (default is 1.6MB). ",
             "fieldConfig": {
                 "defaults": {
                     "color": {
@@ -380,6 +380,7 @@
                         "axisColorMode": "text",
                         "axisLabel": "",
                         "axisPlacement": "auto",
+                        "axisSoftMax": 9000000,
                         "barAlignment": 0,
                         "barWidthFactor": 0.6,
                         "drawStyle": "line",
@@ -413,11 +414,15 @@
                         "steps": [
                             {
                                 "color": "green",
-                                "value": 0
+                                "value": null
                             },
                             {
-                                "color": "red",
-                                "value": 1000000
+                                "color": "yellow",
+                                "value": 1600000
+                            },
+                            {
+                                "color": "dark-red",
+                                "value": 8000000
                             }
                         ]
                     },
@@ -457,6 +462,7 @@
                     "editorMode": "code",
                     "expr": "max(op_batcher_default_pending_blocks_bytes_current{stack_optimism_io_network=\"$network\"})",
                     "fullMetaSearch": false,
+                    "hide": true,
                     "includeNullMetadata": true,
                     "instant": false,
                     "legendFormat": "pending_block_bytes",
@@ -471,18 +477,18 @@
                     },
                     "disableTextWrap": false,
                     "editorMode": "code",
-                    "expr": "max(op_batcher_default_pending_da_bytes{stack_optimism_io_network=\"$network\"})",
+                    "expr": "max(op_batcher_default_unsafe_da_bytes{stack_optimism_io_network=\"$network\"})",
                     "fullMetaSearch": false,
                     "hide": false,
                     "includeNullMetadata": true,
                     "instant": false,
-                    "legendFormat": "pending_da_bytes",
+                    "legendFormat": "unsafe_da_bytes",
                     "range": true,
                     "refId": "B",
                     "useBackend": false
                 }
             ],
-            "title": "Pending L2 Block Data",
+            "title": "Unsafe L2 DA Bytes",
             "type": "timeseries"
         },
         {
